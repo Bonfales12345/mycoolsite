@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool</title>
+    <title>Cool Website</title>
     <style>
         * {
             margin: 0;
@@ -17,15 +17,49 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+        }
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
         }
         video {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <video src="rickroll.mp4" autoplay loop playsinline></video>
+
+    <div id="overlay">Click to enter my cool website!</div>
+    <video id="rickroll" src="rickroll.mp4" loop playsinline></video>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const video = document.getElementById('rickroll');
+
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+    </script>
+
 </body>
 </html>
