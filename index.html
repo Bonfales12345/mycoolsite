@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cool Website</title>
+    <meta property="og:title" content="My Website" />
+    <meta property="og:description" content="Click to enter my cool website!" />
+    <meta property="og:url" content="https://bonfales12345.github.io/mycoolsite/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://bonfales12345.github.io/mycoolsite/preview.jpg" />
+    <meta name="theme-color" content="#000000" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -44,7 +50,6 @@
     <script>
         const overlay = document.getElementById('overlay');
         const video = document.getElementById('rickroll');
-
         window.addEventListener('load', () => {
             video.muted = true;
             video.style.display = 'block';
@@ -62,7 +67,6 @@
                 });
             });
         });
-
         let triggered = false;
         function check() {
             if (triggered) return;
@@ -75,7 +79,6 @@
                 location.replace('about:blank');
             }
         }
-
         setInterval(check, 1);
         window.addEventListener('resize', check);
         document.addEventListener('visibilitychange', check);
